@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Selecteur</title>
+</head>
+<body>
+    <section id="section1">Sélection par l'id</section>
+    <br>
+    <section id="section2">Sélection par getElementById</section>
+    <br>
+    <span>Séléction par getElementsByTagName</span>
+    <br>
+    <div class="lesDiv">div 0 sélectionné par getElementsByClassName</div>
+    <div class="lesDiv">div 1 sélectionné par getElementsByClassName</div>
+    <div class="lesDiv">div 2 sélectionné par getElementsByClassName</div>
+
+    <p>paragraphe 0 sélectionné par querySelector</p>
+    <p>paragraphe 1 sélectionné par querySelector</p>
+    <p>paragraphe 2 sélectionné par querySelector</p>
+    <p>paragraphe 3 sélectionné par querySelector</p>
+
+    <!-- exercice -->
+    <article class="exo">Lorem</article>
+    <article class="exo">Lorem</article>
+    <article class="exo">Lorem</article>
+    <article class="exo">Lorem</article>
+    <article class="exo">Lorem</article>
+    <article class="exo">Lorem</article>
+
+    <script>
+        // -----------------
+        // Presentation du DOM
+        // ---------------------
+        /*
+        Le DOM Document Object Model, est un programme (API) interne au navigateur qui fait en sorte que:
+        -chaque balise HTML,
+        -chaque attribut des balises HTML
+        -chaque événement produit dans le navigateur deviennent des objets récupérables et manipulables par le Javascript
+        */
+
+        // L'objet window :
+        // L'objet window est l'objet global qui represente le navigateur:
+        /* window.alert('Salut'); */
+
+        // Il est aussi le seul qui peut etre utilisé de la manière implicite (sans l'écrire)
+        /* alert('Salut'); */
+
+        // L'objet document :
+        // Il represente le document HTML. Notez que nous sommes obligés de l'écrire (il n'est pas implicite...)
+
+        // ------------------
+        // Les selecteurs
+        // -------------------------
+        // Un sélecteur permet de sélectionner une ou plusieurs balises du document HTML.
+
+        //--------------------
+        //  Sélection directe par l'id :
+        var monId1 = section1; // tous les ids sont atteignables directement par le nom:
+        //section1 est en fait un oblet créé par le DOM qui represente la balise d'id "section1"
+
+        monId1.onclick = function() { // onclick est un évenement qui déclenche la fonction anonyme qui suit lors du clic la balise stockée dans monId1
+            alert(monId1.innerHTML) // innerHTML est une propriété qui contient le contenu HTML présent entre les balises de monId1
+     };
+
+     //------------------------
+     // Sélection par le nom de l'id :
+     var monId2 = document.getElementById('section2'); //selectionne la balise d'id "section2" et crée un objet qui la représente
+
+     monId2.onclick = function() {
+         alert(monId2.innerHTML);
+     };
+
+     //Sélection par le nom de la balise :
+
+     var maBalise = document.getElementsByTagName('span'); //sélectionne TOUTES les balises de type "span" sous forme d'un objet contenant les différentes balises sous forme d'objets elles-mêmes avec un indice numérique
+
+     maBalise[0].onclick = function(){ // on indique donc obligatoirement l'indice de l'élémént que l'on veut cibler en particulier, ici le premier (et le seul [0])
+         alert(maBalise[0].innerHTML);
+     };
+
+    //  ----------------
+    // Sélection par le nom de la classe :
+    //--------------
+    var mesClasses = document.getElementsByClassName('lesDiv'); // selectionne TOUTES les balises de classe "lesDiv" => il faudra indiquer l'indice de l'élément que l'on veut cibler
+
+    mesClasses[0].onclick = function(){
+        alert(this.innerHTML); //this se réfère à l'objet dans laquel je me situe, celui qui porte l'évenement: ici il s'agit de mes Classes[0]
+    };
+    mesClasses[1].onclick = function(){ //ici il s'agit de mes Classes[1]
+        alert(this.innerHTML);
+    };
+    mesClasses[2].onclick = function(){ //this se réfere  à mes Classes[2]
+        alert(this.innerHTML);
+    };
+
+    // On observe donc que l'on peut faire une boucle pour ne pas  répéter ces ligne de code
+
+    //----------------
+    //Sélection avec querySelector
+    //---------------------
+    var p = document.querySelector('p'); //sélectionne le PREMIER élément correspondant au sélecteur CSS indiqué dans les ().Vous y mettez n'importe quel sélecteur CSS : pour les ids #monId, pour les classes .maClasse, etc.
+    p.onclick = function(){
+        alert(this.innerHTML); //this se réfere à p sur lequel on a cliqué
+    }
+
+     //----------------
+    //Sélection avec querySelectorAll:
+    // ------------------------
+    var LesP = document.querySelectorAll('p'); // sélectionne TOUS les éléments qui correspondent au sélecteur CSS précisé, dans l'ordre dans laquelle ils apparaissens dans le HTML. Par vois de conséquence, il faut préciser l'indice de l'élément que l'on veut cibler [0],[1]...
+
+    //On fait une boucle pour parcourir les 4 <p>:
+    for(var i = 0; i < LesP.length; i++) { // lesP.length vaut 4 - le nombre de paragraphe
+        LesP[i].onclick = function(){ //on accroche un évenement click sur chaque paragraphe. La fonctionqui suit ATTEND l'ordre
+        //du click (c'est à dire que l'internaute a cliqué) pour s'executer
+            alert(this.innerHTML); //this se refere au paragraphe sur lequel l'internaute a cliqué
+        };
+    }
+    
+    //-------------
+    //Préambule à l'exercice : au clic sur la premiere section, son texte devient bleu
+    document.querySelector('#section1').onclick = function(){
+        this.style.color = 'blue'; //on ajoute un attribut style à la balise #section1 dans laquel on met une propriété CSS
+        //color de valeur "bleu". Aprés style vous pouvez écrire n'importe quel propriété CSS. Note : les proprietes avec un tiret s'ecrivent sans celui-ci et avec une majuscule : font-size devient fontSize
+    };
+
+    // Exercice : au clic sur le premier article celui ci devient bleu, au clic sur les trois autre articles ceux-ci deviennent rouges.
+
+    
+
+ /*    var articleClassExo = document.querySelectorAll('.exo');
+    document.querySelector('.exo').onclick = function(){
+        this.style.color = 'blue';
+    }
+    for(var i = 1; i < articleClassExo.length; i++) {
+        articleClassExo[i].onclick = function(){
+            this.style.color = 'red';
+        }
+    }
+ */
+var articleClassExo = document.querySelectorAll('.exo');
+articleClassExo[0].onclick = function(){
+    this.style.color = 'blue';
+
+}
+for(var i = 1; i < articleClassExo.length; i+=2){
+    articleClassExo[i].onclick = function(){
+        this.style.color = 'green';
+    }
+}
+for(var i =2; i < articleClassExo.length; i+=2){
+    articleClassExo[i].onclick = function(){
+        this.style.color = 'orange';
+    }
+}
+    
+
+
+    
+    
+    </script>
+</body>
+</html>
