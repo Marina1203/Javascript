@@ -36,6 +36,35 @@
     
         
 
+        var pseudo = document.querySelector('#pseudo');
+        var mdp = document.querySelector('#mdp');
+        var focus = document.querySelectorAll('.focus')
+
+       
+
+
+         function couleur(){
+            pseudo.style.border = '2px solid red';
+        }
+        function normale(){
+            pseudo.style.border = '1px solid black';
+        }
+        function couleur1(){
+            mdp.style.border = '2px solid red';
+        }
+        function normale1(){
+            mdp.style.border = '1px solid black';
+        }
+        pseudo.addEventListener('focus', couleur,);
+         pseudo.addEventListener('blur', normale);
+
+        mdp.addEventListener('focus', couleur1,);
+        mdp.addEventListener('blur', normale1);  
+        
+    
+    
+
+
     </script>
     
     
