@@ -828,6 +828,11 @@ d('adresse sans les espaces :' + adresse.trim().length);
 // codecademy.com  cours, forum,exercices
 // w3schools.com
 
+var x = Number(prompt("Entrez une valeur :"));
+var but = x * 3 - 1;
+but += 5;
+console.log(but);
+
 
     
        
