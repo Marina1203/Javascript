@@ -25,29 +25,40 @@
 
         var pseudo = document.querySelector('#pseudo');
         var mdp = document.querySelector('#mdp');
-        var focus = document.querySelectorAll('.focus')
-
        
 
-
+       
          function couleur(){
             pseudo.style.border = '2px solid red';
         }
         function normale(){
-            pseudo.style.border = '1px solid black';
+            pseudo.style.border = '';
         }
         function couleur1(){
             mdp.style.border = '2px solid red';
         }
         function normale1(){
-            mdp.style.border = '1px solid black';
+            mdp.style.border = '';
         }
-        pseudo.addEventListener('focus', couleur,);
+        pseudo.addEventListener('focus', couleur);
          pseudo.addEventListener('blur', normale);
 
-        mdp.addEventListener('focus', couleur1,);
+        mdp.addEventListener('focus', couleur1);
         mdp.addEventListener('blur', normale1);  
         
+
+         // correction avec une boucle for:
+  /*        var inputs = document.querySelectorAll('.focus');
+
+         for ( var i = 0; i < inputs.length; i++){
+
+        inputs[i].addEventListener('focus', function(){
+            this.style.border = '1px solid red';
+        });
+        inputs[i].addEventListener('blur', function(){
+            this.style.border = '';
+        });
+    } */
     
     
 

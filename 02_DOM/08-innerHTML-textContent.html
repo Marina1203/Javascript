@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajouter du texte au HTML</title>
+</head>
+<body>
+    <div id="message1">..........</div>
+    <div id="message2">..........</div>
+  
+    <button>clique ici</button>
+
+    <script>
+        // Difference entre innerHTML et textContent :
+        function changeTexte() {
+            //innerHTML:
+            document.querySelector('#message1').innerHTML = '<p>Salut,ca va ?</p>'; // innerHtml interprete les balises ; elles sont inserés dans le document HTML
+            //textContent:
+            document.querySelector('#message2').textContent = '<p>Oui,ca va </p>'; // textContent traite le string comme un texte BRUT : les balises ne sont pas insérés dans le document Html
+        }
+        document.querySelector('button').addEventListener('click',changeTexte);
+    </script>
+    
+</body>
+</html>
